@@ -54,11 +54,16 @@ function createViz(allData) {
 
   cars = svg.append("g") //initialize cars group
             .attr("class", "cars");
+  let infoBox = svg.append("rect")
+                    .attr("width", "600")
+                    .attr("height", "50")
+                    .attr("transform", "translate(85,170)")
+                    .style("fill", "#222");
 
   //timestamp label
   infoLab = svg.append("text")
-                    .attr("class", "info-label")
-                    .attr("transform", "translate(100,100)");
+                .attr("class", "info-label")
+                .attr("transform", "translate(100,200)");
 
   cars.selectAll(".car")
       .data(geoCarData[0].features)
@@ -71,36 +76,6 @@ function createViz(allData) {
 
 }; //end of createViz function
 
-function transition(path) {
-  paths.transition()
-      .duration(3000)
-      .attrTween("stroke-dasharray", tweenDash)
-      .each("end", function() {
-        d3.select(this).call(transition);
-        cars.style("opacity", 0)
-      });
-}
-
-function tweenDash() {
-
-    return function(t) {
-        //total length of path (single value)
-        var l = paths.node().getTotalLength();
-        interpolate = d3.interpolateString("0," + l, l + "," + l);
-
-        //t is fraction of time 0-1 since transition began
-        var marker = d3.select("#marker");
-
-        // p is the point on the line (coordinates) at a given length
-        // along the line. In this case if l=50 and we're midway through
-        // the time then this would 25.
-        var p = paths.node().getPointAtLength(t * l);
-
-        //Move the marker to that point
-        marker.attr("transform", "translate(" + p.x + "," + p.y + ")"); //move marker
-        return interpolate(t);
-    }
-}
 
 let carIndex = 0;
 let featureIndex = 0;
@@ -113,7 +88,7 @@ function loopCars(){
   // update vehicle label
   infoLab.join("text")
           .merge(infoLab)
-          .text("Vehicle ID: " + carIndex + " , Time: " + new Date(parseInt(geoCarData[carIndex].features[featureIndex].properties.time)));
+          .text("Vehicle ID: " + carIndex + " Time: " + new Date(parseInt(geoCarData[carIndex].features[featureIndex].properties.time)));
 
   // // update cars
   cars.selectAll(".car")
@@ -132,8 +107,6 @@ function loopCars(){
   //
   setTimeout(function(){
 
-    //console.log(featureIndex);
-
     if(featureIndex + featureInc < carsTotal){
       featureIndex += featureInc;
       loopCars();
@@ -148,13 +121,6 @@ function loopCars(){
         carIndex = 0;
       }
     }
-
-    // if(carIndex < 470){
-    //   carIndex++;
-    //   loopCars();
-    // }else{
-    //   carIndex = 0;
-    // }
 
   }, 2);
 }
