@@ -1,8 +1,35 @@
 .sidebar {
   position: absolute;
-  width: 30%;
+  width: 25%;
   height: 100%;
   background-color: #222;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 60px;
+}
+
+.sidebar h1 {
+  font-family: "Montserrat";
+  font-size: 18pt;
+  color: #fff;
+}
+
+.sidebar h2 {
+  font-family: "Montserrat";
+  font-size: 16pt;
+  color: #fff;
+}
+
+.sidebar h3 {
+  font-family: "Montserrat";
+  font-size: 14pt;
+  color: #fff;
+}
+
+.sidebar p {
+  font-family: "Montserrat";
+  font-size: 12pt;
+  color: #fff;
 }
 
 .viz {
