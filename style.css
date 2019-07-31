@@ -1,0 +1,49 @@
+.sidebar {
+  position: absolute;
+  width: 30%;
+  height: 100%;
+  background-color: #222;
+}
+
+.viz {
+  position: absolute;
+  left: 30%;
+  width: 70%;
+  height: 100%;
+  background-color: gainsboro;
+}
+
+.viz svg {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.info-label {
+  font-family: "Lato";
+  font-size: 14pt;
+  color: #fff;
+}
+
+.car {
+  fill: #fff;
+  visibility: hidden;
+}
+
+.moving {
+  fill: #FFB11B;
+  opacity: 0.3;
+}
+
+.idle {
+  fill: cyan;
+}
+
+.boro {
+  fill: #bbb;
+  stroke: #ddd;
+}
+
+#Manhattan {
+  fill: #222;
+}
