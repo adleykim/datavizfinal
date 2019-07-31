@@ -1,5 +1,5 @@
 let boroURL = 'https://data.cityofnewyork.us/api/geospatial/tqmj-j8zm?method=export&format=GeoJSON',
-    pathURL = '/data/vehicle_paths_small.csv';
+    pathURL = './data/vehicle_paths_small.csv';
 
 Promise.all([d3.json(boroURL), d3.csv(pathURL)])
       .then(createViz);
